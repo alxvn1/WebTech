@@ -1,0 +1,48 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e3f2fd;
+    text-align: center;
+    color: #0d47a1;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background: #bbdefb;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #64b5f6;
+    border-radius: 5px;
+    background: #e3f2fd;
+}
+
+.movie-list {
+    list-style: none;
+    padding: 0;
+}
+
+.movie-item {
+    padding: 10px;
+    background: #42a5f5;
+    margin: 5px 0;
+    border-radius: 5px;
+    color: white;
+}
+
+footer {
+    margin-top: 20px;
+    background: #bbdefb;
+    padding: 10px;
+    text-align: center;
+}
+
+.developer-info {
+    font-size: 14px;
+}
