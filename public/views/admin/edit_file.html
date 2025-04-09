@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>File editing</title>
+    <link rel="stylesheet" type="text/css" href="/public/assets/css/styles.css">
+</head>
+<body>
+<h1>Edit: {{ filename }}</h1>
+<form method="POST" action="/admin/files/edit" id="editForm">
+    <input type="hidden" name="file" value="{{ fileParam }}">
+    <label for="editor">File content:</label>
+    <textarea id="editor" name="content">{{ fileContent }}</textarea>
+    <div class="form-actions">
+        <button type="submit" name="save" id="saveButton">Save</button>
+        <a href="/admin" class="btn-exit">Exit</a>
+    </div>
+</form>
+</body>
+<footer>
+    <div class="developer-info">
+        <p>Developer: Polina Kisel</p>
+        <p>Year: 2025</p>
+    </div>
+</footer>
+</html>

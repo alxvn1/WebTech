@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ genre->getName() }}</title>
+    <link rel="stylesheet" type="text/css" href="/public/assets/css/styles.css">
+</head>
+<body>
+    <a href="/genres" class="btn-back">
+        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><polygon points='10,0 0,10 10,20' fill='%23fff'/></svg>"
+             class="back-icon" alt="Back">
+        Back
+    </a>
+
+    <div class="container">
+        <h1>{{ genre->getName() }}</h1>
+        <a href="/movie/add-form?genreID={{ genre->id }}" class="btn-add">Add movie</a>
+
+        <table class="movie-table">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Rating</th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {{if !empty($movies)}}
+            {{foreach $movies as $movie}}
+            <tr>
+                <td>{{ movie->getTitle() }}</td>
+                <td>{{ movie->getRating() }}</td>
+                <td>
+                    <a href="/movies/edit-form?id={{ movie->id }}" class="btn-edit">Edit</a>
+                    <a href="/movies/delete?id={{ movie->id }}&genreId={{ genre->id }}" class="btn-delete"
+                       onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+            {{endforeach}}
+            {{else}}
+            <tr>
+                <td colspan="5" class="message">There is no any movie.</td>
+            </tr>
+            {{endif}}
+            </tbody>
+        </table>
+    </div>
+
+    <script src="/public/assets/js/script.js"></script>
+</body>
+<footer>
+    <div class="developer-info">
+        <p>Developer: Polina Kisiel</p>
+        <p>Year: 2025</p>
+    </div>
+</footer>
+</html>

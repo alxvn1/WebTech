@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add movie</title>
+    <link rel="stylesheet" type="text/css" href="/public/assets/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Add movie</h1>
+        <form action="/movie/add" method="POST">
+            <input type="hidden" name="genreID" value="{{ genreID }}">
+
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="rating">Rating:</label>
+            <input type="file" id="rating" name="rating" required>
+
+            <button type="submit" class="btn-add">Add</button>
+        </form>
+    </div>
+
+    <script src="/public/assets/js/script.js"></script>
+</body>
+<footer>
+    <div class="developer-info">
+        <p>Developer: Polina Kisiel</p>
+        <p>Year: 2025</p>
+    </div>
+</footer>
+</html>
