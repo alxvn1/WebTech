@@ -3,24 +3,25 @@
 namespace App\Controller;
 
 use App\Core\TemplateEngine;
-use App\Service\GenreService;
+use App\Service\DirectorService;
 
-class GenreController
+class DirectorController
 {
-    private GenreService $genreService;
+    private DirectorService $directorService;
 
-    public function __construct(GenreService $genreService) {
-        $this->genreService = $genreService;
+    public function __construct(DirectorService $directorService)
+    {
+        $this->directorService = $directorService;
     }
 
     public function listAction(): void
     {
-        $genres = $this->genreService->getAllGenres();
-        $templatePath = __DIR__ . '/../../public/views/genre/genre_list.html';
+        $directors = $this->directorService->getAllDirectors();
+        $templatePath = __DIR__ . '/../../public/views/director/director_list.html';
 
         $templateEngine = new TemplateEngine();
         echo $templateEngine->render($templatePath, [
-            'genres' => $genres
+            'directors' => $directors
         ]);
     }
 
@@ -32,12 +33,12 @@ class GenreController
             return;
         }
 
-        $success = $this->genreService->deleteGenre($id);
+        $success = $this->directorService->deleteDirector($id);
 
         if ($success) {
-            header('Location: /genres');
+            header('Location: /directors');
         } else {
-            echo "Ошибка при удалении жанра";
+            echo "Ошибка при удалении режиссера";
         }
     }
 
@@ -50,12 +51,12 @@ class GenreController
             return;
         }
 
-        $success = $this->genreService->addGenre($name);
+        $success = $this->directorService->addDirector($name);
 
         if ($success) {
-            header('Location: /genres');
+            header('Location: /directors');
         } else {
-            echo "Ошибка при добавлении жанра";
+            echo "Ошибка при добавлении режиссера";
         }
     }
 }

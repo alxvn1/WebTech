@@ -16,8 +16,8 @@
             <label for="title">Title:</label>
             <input type="text" id="title" name="title" value="{{ movie->getTitle() }}" required>
 
-            <label for="rating">Ratinf:</label>
-            <input type="text" id="rating" name="rating" value="{{ movie->getRating() }}" required>
+            <label for="rating">Rating:</label>
+            <input type="number" id="rating" name="rating" step="0.1" min="0" max="10" value="{{ movie->getRating() }}" required>
 
             <label for="genre">Genre:</label>
             <select id="genre" name="genreID" required>
@@ -26,6 +26,17 @@
                 <option value="{{ genre->id }}"
                         {{if $genre->id == $movie->getGenreID()}} selected {{endif}}>
                     {{ genre->getName() }}
+                </option>
+                {{endforeach}}
+            </select>
+
+            <label for="director">Director:</label>
+            <select id="director" name="directorID" required>
+                <option value="" disabled>Choose the genre</option>
+                {{foreach $directors as $director}}
+                <option value="{{ director->id }}"
+                        {{if $director->id == $movie->getDirectorID()}} selected {{endif}}>
+                    {{ director->getName() }}
                 </option>
                 {{endforeach}}
             </select>

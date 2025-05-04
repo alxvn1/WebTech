@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Genre list</title>
+    <title>Director list</title>
     <link rel="stylesheet" type="text/css" href="/public/assets/css/styles.css">
 </head>
 <body>
@@ -11,44 +11,44 @@
              class="back-icon" alt="Movies">
         Movies
     </a>
-    <a href="/directors" class="btn-director">
+    <a href="/genres" class="btn-genre">
         <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><polygon points='10,0 0,10 10,20' fill='%23fff'/></svg>"
-             class="back-icon" alt="Directors">
-        Directors
+             class="back-icon" alt="Genres">
+        Genres
     </a>
 
     <div class="container">
-        <h1>Genre list</h1>
-        <form action="/genres/add" method="POST">
-            <label for="name">Name of new genre:</label>
+        <h1>Director list</h1>
+        <form action="/directors/add" method="POST">
+            <label for="name">Name of new director:</label>
             <input type="text" id="name" name="name" maxlength="90" required>
             <button type="submit" class="btn-add">Add</button>
         </form>
-        <table class="genre-table">
+        <table class="director-table">
             <thead>
             <tr>
-                <th>Genre's name</th>
+                <th>Director's name</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
-            {{if !empty($genres)}}
-            {{foreach $genres as $genre}}
+            {{if !empty($directors)}}
+            {{foreach $directors as $director}}
             <tr>
                 <td>
-                    <a href="/movies/genre?id={{ genre->id }}" class="genre-link">
-                        {{ genre->getName() }}
+                    <a href="/movies/director?id={{ director->id }}" class="director-link">
+                        {{ director->getName() }}
                     </a>
                 </td>
                 <td>
-                    <a href="/genres/delete?id={{ genre->id }}" class="btn-delete"
+                    <a href="/directors/delete?id={{ director->id }}" class="btn-delete"
                        onclick="return confirm('Are you sure?')">Delete</a>
                 </td>
             </tr>
             {{endforeach}}
             {{else}}
             <tr>
-                <td colspan="2" class="message">There is no genres.</td>
+                <td colspan="2" class="message">There is no directors.</td>
             </tr>
             {{endif}}
             </tbody>

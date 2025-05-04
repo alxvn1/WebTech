@@ -24,6 +24,11 @@ class MovieService
         return $this->movieRepository->findByGenre($genreID);
     }
 
+    public function getMoviesByDirector(int $directorID): array
+    {
+        return $this->movieRepository->findByDirector($directorID);
+    }
+
     public function getMovieById(int $id): ?Movie
     {
         return $this->movieRepository->findOne($id);
@@ -34,22 +39,24 @@ class MovieService
         return $this->movieRepository->delete($id);
     }
 
-    public function addMovie(string $title, float $rating, int $genreID): bool
+    public function addMovie(string $title, float $rating, int $genreID, int $directorID): bool
     {
         $movie = new Movie();
         $movie->title = $title;
         $movie->rating = $rating;
         $movie->genreID = $genreID;
+        $movie->directorID = $directorID;
         return $this->movieRepository->add($movie);
     }
 
-    public function updateMovie(int $id, string $title, string $rating, int $genreID): bool
+    public function updateMovie(int $id, string $title, float $rating, int $genreID, int $directorID): bool
     {
         $movie = new Movie();
         $movie->id = $id;
         $movie->title = $title;
         $movie->rating = $rating;
         $movie->genreID = $genreID;
+        $movie->directorID = $directorID;
         return $this->movieRepository->update($movie);
     }
 }

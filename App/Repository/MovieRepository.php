@@ -31,6 +31,14 @@ class MovieRepository
         return $stmt->fetchAll(PDO::FETCH_CLASS, Movie::class);
     }
 
+    public function findByDirector(int $directorID): array
+    {
+        $stmt = $this->entityManager->getConnection()->prepare("SELECT * FROM Movie WHERE directorID = :directorID");
+        $stmt->execute(['directorID' => $directorID]);
+
+        return $stmt->fetchAll(PDO::FETCH_CLASS, Movie::class);
+    }
+
     public function findOne(int $id): ?Movie
     {
         $stmt = $this->entityManager->getConnection()->prepare("SELECT * FROM Movie WHERE id = :id");
@@ -46,6 +54,7 @@ class MovieRepository
         $movie->title = $data['title'];
         $movie->rating = $data['rating'];
         $movie->genreID = $data['genreID'];
+        $movie->directorID = $data['directorID'];
 
         return $movie;
     }
@@ -53,24 +62,26 @@ class MovieRepository
     public function add(Movie $movie): bool
     {
         $stmt = $this->entityManager->getConnection()->prepare(
-            "INSERT INTO Movie (title, rating, genreID) VALUES (:title, :rating, :genreID)"
+            "INSERT INTO Movie (title, rating, genreID, directorID) VALUES (:title, :rating, :genreID, :directorID)"
         );
         return $stmt->execute([
             'title' => $movie->getTitle(),
             'rating' => $movie->getRating(),
-            'genreID' => (int)$movie->getGenreID()
+            'genreID' => (int)$movie->getGenreID(),
+            'directorID' => (int)$movie->getDirectorID()
         ]);
     }
 
     public function update(Movie $movie): bool
     {
         $stmt = $this->entityManager->getConnection()->prepare(
-            "UPDATE Movie SET title = :title, rating = :rating, genreID = :genreID WHERE id = :id"
+            "UPDATE Movie SET title = :title, rating = :rating, genreID = :genreID, directorID = :directorID WHERE id = :id"
         );
         return $stmt->execute([
             'title' => $movie->getTitle(),
             'rating' => $movie->getRating(),
             'genreID' => $movie->getGenreID(),
+            'directorID' => $movie->getDirectorID(),
             'id' => $movie->id
         ]);
     }

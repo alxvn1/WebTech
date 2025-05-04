@@ -9,14 +9,32 @@
 <body>
     <div class="container">
         <h1>Add movie</h1>
-        <form action="/movie/add" method="POST">
-            <input type="hidden" name="genreID" value="{{ genreID }}">
-
+        <form action="/movies/add" method="POST">
             <label for="title">Title:</label>
             <input type="text" id="title" name="title" required>
 
             <label for="rating">Rating:</label>
-            <input type="file" id="rating" name="rating" required>
+            <input type="number" id="rating" name="rating" step="0.1" min="0" max="10" required>
+
+            <label for="genre">Genre:</label>
+            <select id="genre" name="genreID" required>
+                <option value="" disabled selected>Choose the genre</option>
+                {{foreach $genres as $genre}}
+                <option value="{{ genre->id }}">
+                    {{ genre->getName() }}
+                </option>
+                {{endforeach}}
+            </select>
+
+            <label for="director">Director:</label>
+            <select id="director" name="directorID" required>
+                <option value="" disabled selected>Choose the director</option>
+                {{foreach $directors as $director}}
+                <option value="{{ director->id }}">
+                    {{ director->getName() }}
+                </option>
+                {{endforeach}}
+            </select>
 
             <button type="submit" class="btn-add">Add</button>
         </form>

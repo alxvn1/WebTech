@@ -9,6 +9,7 @@ class Movie
     public string $title;
     public ?int $genreID;
     public ?float $rating;
+    public ?int $directorID;
 
     public function getTitle(): string
     {
@@ -25,6 +26,11 @@ class Movie
         return $this->rating;
     }
 
+    public function getDirectorID(): ?int
+    {
+        return $this->directorID;
+    }
+
     public function setTitle(string $title): void
     {
         $this->title = $title;
@@ -38,5 +44,10 @@ class Movie
     public function setRating(?float $rating): void
     {
         $this->rating = $rating;
+    }
+
+    public function setDirectorID(int $directorID): void
+    {
+        $this->directorID = $directorID;
     }
 }

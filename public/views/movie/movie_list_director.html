@@ -3,24 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movies</title>
+    <title>{{ director->getName() }}</title>
     <link rel="stylesheet" type="text/css" href="/public/assets/css/styles.css">
 </head>
 <body>
-    <a href="/genres" class="btn-genre">
+    <a href="/directors" class="btn-back">
         <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><polygon points='10,0 0,10 10,20' fill='%23fff'/></svg>"
-             class="back-icon" alt="Genres">
-        Genres
-    </a>
-    <a href="/directors" class="btn-director">
-        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><polygon points='10,0 0,10 10,20' fill='%23fff'/></svg>"
-             class="back-icon" alt="Directors">
-        Directors
+             class="back-icon" alt="Back">
+        Back
     </a>
 
     <div class="container">
-        <h1>Movies</h1>
-        <a href="/movies/add-form" class="btn-add">Add movie</a>
+        <h1>{{ director->getName() }}</h1>
+        <a href="/movies/add-form?directorID={{ director->id }}" class="btn-add">Add movie</a>
 
         <table class="movie-table">
             <thead>
@@ -39,7 +34,7 @@
                 <td>{{ movie->getRating() }}</td>
                 <td>
                     <a href="/movies/edit-form?id={{ movie->id }}" class="btn-edit">Edit</a>
-                    <a href="/movies/delete?id={{ movie->id }}" class="btn-delete"
+                    <a href="/movies/delete?id={{ movie->id }}&directorId={{ director->id }}" class="btn-delete"
                        onclick="return confirm('Are you sure?')">Delete</a>
                 </td>
             </tr>
